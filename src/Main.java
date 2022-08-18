@@ -22,7 +22,29 @@ public class Main {
         System.out.println(reverseShow(reverseFullName));
 
         System.out.println("Task 5");
-        task5();
+        matrix();
+
+        System.out.println("Task 6");
+        int[] array = {5, 4, 3, 2, 1};
+        System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(reverseArrayWithAddArray(array)));
+
+        System.out.println("Task 7");
+        int[] array2 = {8, 7, 5, 4, 3, 2, 1, 4, 6};
+        System.out.println(Arrays.toString(array2));
+        System.out.println(Arrays.toString(reverseArrayWithoutAddArray(array2)));
+
+        System.out.println("Task 8");
+        int[] array3 = {-6, 2, 5, -8, 8, 10, 4, -7, 12, 1};
+        System.out.println(Arrays.toString(array3));
+        System.out.println(Arrays.toString(findPairNums(array3)));
+
+
+        System.out.println("Task 9");
+        int[] array4 = {-6, 2, 5, -8, 8, 10, 4, -7, 12, 1};
+        System.out.println(Arrays.toString(array4));
+        System.out.println(findAllPairsNums(array4));
+
 
     }
 
@@ -31,7 +53,7 @@ public class Main {
         for (int element : array) {
             sum += element;
         }
-         return sum;
+        return sum;
     }
 
     private static int minElement(int[] array) {
@@ -41,7 +63,7 @@ public class Main {
                 min = element;
             }
         }
-         return min;
+        return min;
     }
 
     private static int maxElement(int[] array) {
@@ -51,7 +73,7 @@ public class Main {
                 max = element;
             }
         }
-         return max;
+        return max;
     }
 
     private static double averageSum(int[] array) {
@@ -66,7 +88,7 @@ public class Main {
         return answer.toString();
     }
 
-    private static void task5() {
+    private static void matrix() {
         int[][] arr = new int[3][3];
 
         for (int i = 0; i < arr.length; i++) {
@@ -85,6 +107,54 @@ public class Main {
             }
             System.out.print("\n");
         }
+    }
+
+    private static int[] reverseArrayWithAddArray(int[] array) {
+        int[] addArray = new int[array.length];
+
+        for (int i = array.length-1; i >= 0; i--) {
+            addArray[array.length-1 - i] = array[i];
+        }
+        return addArray;
+    }
+
+    private static int[] reverseArrayWithoutAddArray(int[] array) {
+        for (int temp, i = 0; i <= (array.length-1) / 2; i++) {
+            temp = array[i];
+            array[i] = array[array.length - 1 - i];
+            array[array.length - 1 - i] = temp;
+        }
+        return array;
+    }
+
+    private static int[] findPairNums(int[] array) {
+        int[] answer = new int[2];
+
+        for (int i = 0; i < array.length-1; i++) {
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[i] + array[j] == -2) {
+                    answer[0] = array[i];
+                    answer[1] = array[j];
+                }
+            }
+        }
+        return answer;
+    }
+
+    private static String findAllPairsNums(int[] array) {
+        StringBuilder answer = new StringBuilder();
+
+        for (int i = 0; i < array.length-1; i++) {
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[i] + array[j] == -2) {
+                    answer.append(array[i]);
+                    answer.append(" & ");
+                    answer.append(array[j]);
+                    answer.append("; ");
+                }
+            }
+        }
+        return answer.toString();
     }
 
     public static int[] generateRandomArray() {
